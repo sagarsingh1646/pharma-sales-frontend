@@ -20,6 +20,16 @@ export const updateSales = async (updatedData, id) => {
   }
 };
 
+//create Sale
+export const createSales = async (data, id) => {
+  try {
+    const response = await axiosInstance.post("/sales/create", data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Failed to create sale data" };
+  }
+};
+
 //delete sale
 export const deleteSales = async (id) => {
   try {

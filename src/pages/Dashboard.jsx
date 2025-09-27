@@ -6,18 +6,22 @@ import { DollarSign, Package, ShoppingCart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSales, getSales } from "../api/salesApi";
 import {
-    deleteSale,
+  deleteSale,
   fetchSalesFailure,
   fetchSalesStart,
   fetchSalesSuccess,
 } from "../features/sales/SalesSlice";
+import CreateSalesTransactionCard from "../components/sales/CreateSalesTransactionCard";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
-  const { loading, error, sales, isUpdated } = useSelector((state) => state.sales);
+  const { loading, error, sales, isUpdated } = useSelector(
+    (state) => state.sales
+  );
   const { role } = useSelector((state) => state.auth);
 
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isCreateSaleOpen, setCreateSaleOpen] = useState(false);
   const [selectedSale, setSelectedSale] = useState(null);
 
   const statsData =
@@ -81,12 +85,14 @@ export default function Dashboard() {
       dispatch(fetchSalesStart());
       try {
         const data = await getSales();
-        console.log("data from dashboard", data)
+        console.log("data from dashboard", data);
         if (data) {
           dispatch(fetchSalesSuccess(data.sales));
         }
       } catch (err) {
-        dispatch(fetchSalesFailure(err.message || "Failed to fetch sales data"));
+        dispatch(
+          fetchSalesFailure(err.message || "Failed to fetch sales data")
+        );
       }
     };
 
@@ -99,20 +105,28 @@ export default function Dashboard() {
     setIsEditOpen(true);
   };
 
+  const handleCreateSale = () => {
+    setCreateSaleOpen(true);
+  };
+
   const handleDelete = async (id) => {
     try {
-        const data = await deleteSales(id)
-        if(data){
-            dispatch(deleteSale())
-        }
+      const data = await deleteSales(id);
+      if (data) {
+        dispatch(deleteSale());
+      }
     } catch (error) {
-        dispatch(updateSaleFailure(err.message || "Failed to delete sale data"))
+      dispatch(updateSaleFailure(err.message || "Failed to delete sale data"));
     }
   };
 
   const closeEditModal = () => {
     setIsEditOpen(false);
     setSelectedSale(null);
+  };
+
+  const closeCreateSaleModal = () => {
+    setCreateSaleOpen(false);
   };
 
   return (
@@ -122,8 +136,8 @@ export default function Dashboard() {
         <h2 className="text-3xl font-bold">
           {role === "rep" ? "Sales Dashboard" : "Manager Dashboard"}
         </h2>
-        <button className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800">
-          New Sales
+        <button onClick={handleCreateSale} className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800">
+          New Sale
         </button>
       </div>
 
@@ -156,6 +170,15 @@ export default function Dashboard() {
               sale={selectedSale}
               onClose={closeEditModal}
             />
+          </div>
+        </div>
+      )}
+
+      {/* Create Sale Modal */}
+      {isCreateSaleOpen && (
+        <div className="fixed inset-0 bg-white/60 flex items-center justify-center z-50">
+          <div className="relative w-full max-w-2xl">
+            <CreateSalesTransactionCard onClose={closeCreateSaleModal} />
           </div>
         </div>
       )}

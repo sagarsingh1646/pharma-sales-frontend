@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { updateSales } from "../../api/salesApi";
+import { createSales } from "../../api/salesApi";
 import { useDispatch } from "react-redux";
 import { updateSale, updateSaleFailure } from "../../features/sales/SalesSlice";
 
@@ -21,8 +21,7 @@ export default function CreateSalesTransactionCard({ onClose }) {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    const updatedSale = {
-      ...sale,
+    const newSaledata = {
       productName,
       quantity,
       pricePerUnit,
@@ -32,12 +31,12 @@ export default function CreateSalesTransactionCard({ onClose }) {
     };
 
     try{
-    const data = await updateSale(updatedSale, sale._id)
+    const data = await createSales(newSaledata)
     if(data) {
-        dispatch( updateSales())
+        dispatch( updateSale())
     }
     }catch(err){
-        dispatch(updateSaleFailure(err.message || "Failed to update sale data"))
+        dispatch(updateSaleFailure(err.message || "Failed to create sale data"))
     }
 
     onClose();
