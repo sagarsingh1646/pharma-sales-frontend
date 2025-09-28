@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "./AxiosInstance";
 
 // Get Sales (manager/rep)
 export const getSales = async () => {
