@@ -82,3 +82,6 @@ npm run dev
 - **Frontend:** React.js, Vite, Tailwind CSS
 - **State Management:** Redux
 - **Routing:** React Router DOM
+
+## Deployed URL
+[Frontend URL](https://pharma-sales.netlify.app/).
