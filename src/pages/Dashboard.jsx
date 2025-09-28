@@ -160,7 +160,7 @@ export default function Dashboard() {
         {role === "manager" ? (
           <button
             onClick={() => navigate("/reports")}
-            className="flex items-center px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
+            className="flex cursor-pointer items-center px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
           >
             <BarChart3 className="h-4 w-4 mr-2" />
             View Reports
@@ -168,7 +168,7 @@ export default function Dashboard() {
         ) : (
           <button
             onClick={() => setIsCreateSaleOpen(true)}
-            className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
+            className="px-4 cursor-pointer py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
           >
             New Sale
           </button>
