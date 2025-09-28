@@ -84,4 +84,16 @@ npm run dev
 - **Routing:** React Router DOM
 
 ## Deployed URL
-[Frontend URL](https://pharma-sales.netlify.app/).
+- [Frontend URL](https://pharma-sales.netlify.app/).
+- Note: The first backend response may take some time because it is hosted on a free server that spins down during inactivity, which can delay requests by up to 50 seconds or more.
+
+## Demo Accounts
+> Use the following demo accounts to explore the app.
+
+### Manager Account (Cannot be created through the app)
+- **Email:** sagar@pharma.com
+- **Password:** Sagar123
+
+### Sales Representative Account (You can also create new accounts)
+- **Email:** rohit@gmail.com
+- **Password:** Rohit@123
