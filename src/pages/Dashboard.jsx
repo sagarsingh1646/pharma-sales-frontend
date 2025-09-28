@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SalesTable from "../components/sales/SalesTable";
 import StatCard from "../components/sales/StatCard";
 import EditSalesTransactionCard from "../components/sales/EditSalesTransactionCard";
-import { DollarSign, Package, ShoppingCart } from "lucide-react";
+import { DollarSign, Package, ShoppingCart, Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSales, getSales } from "../api/salesApi";
 import {
@@ -85,7 +85,6 @@ export default function Dashboard() {
       dispatch(fetchSalesStart());
       try {
         const data = await getSales();
-        console.log("data from dashboard", data);
         if (data) {
           dispatch(fetchSalesSuccess(data.sales));
         }
@@ -97,7 +96,7 @@ export default function Dashboard() {
     };
 
     fetchSalesData();
-  }, [isUpdated]);
+  }, [isUpdated, dispatch]);
 
   const handleEdit = (id) => {
     const sale = sales.find((s) => s._id === id);
@@ -115,8 +114,8 @@ export default function Dashboard() {
       if (data) {
         dispatch(deleteSale());
       }
-    } catch (error) {
-      dispatch(updateSaleFailure(err.message || "Failed to delete sale data"));
+    } catch (err) {
+      dispatch(fetchSalesFailure(err.message || "Failed to delete sale data"));
     }
   };
 
@@ -129,14 +128,33 @@ export default function Dashboard() {
     setCreateSaleOpen(false);
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="animate-spin h-10 w-10 text-gray-700" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen text-red-600 font-semibold">
+        {error}
+      </div>
+    );
+  }
+
   return (
-    <div className="p-6 space-y-8">
+    <div className="p-6 px-8  space-y-8">
       {/* Header */}
       <div className="flex justify-between">
         <h2 className="text-3xl font-bold">
-          {role === "rep" ? "Sales Dashboard" : "Manager Dashboard"}
+          {role === "manager" ? "Manager Dashboard": "Sales Dashboard"}
         </h2>
-        <button onClick={handleCreateSale} className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800">
+        <button
+          onClick={handleCreateSale}
+          className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
+        >
           New Sale
         </button>
       </div>

@@ -6,6 +6,8 @@ import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
+    <div>
+    <Navbar/>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -13,6 +15,7 @@ function App() {
         {/* Redirect default path to login */}
         <Route path="*" element={<Login />} />
       </Routes>
+    </div>
   );
 }
 
