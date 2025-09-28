@@ -4,17 +4,35 @@ import Signup from "./pages/SignupPage";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/layout/Navbar";
 import SalesReportPage from "./pages/SalesReportPage";
+import ProtectedRoute from "./components/routes/ProtectedRoute"; 
 
 function App() {
   return (
     <div>
-    <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reports" element={<SalesReportPage />} />
-        {/* Redirect default path to login */}
+
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <SalesReportPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Redirect unknown paths to login */}
         <Route path="*" element={<Login />} />
       </Routes>
     </div>
