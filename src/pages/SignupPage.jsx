@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signupUser } from "../api/authAPI";
+import { signupUser } from "../api/authApi";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpFailure, signUpStart, signUpSuccess } from "../features/auth/AuthSlice";
 
@@ -35,7 +35,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
+    <div className="flex justify-center items-center p-20 bg-white">
       <div className="bg-white border border-gray-200 rounded-xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-2">Sign Up</h1>
         <p className="text-gray-500 text-center mb-16">Create a new account</p>
