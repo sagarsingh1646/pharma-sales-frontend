@@ -39,7 +39,7 @@ export default function SalesTableRow({ sale, role, onEdit, onDelete }) {
           {/* Edit Button */}
           <button
             onClick={() => onEdit(sale._id)}
-            className="flex items-center border border-gray-200 p-2 rounded hover:bg-blue-600 transition"
+            className="flex items-center border border-gray-200 p-2 rounded hover:bg-gray-200 transition"
             title="Edit Sale"
           >
             <Edit className="w-4 h-4"/>
@@ -48,7 +48,7 @@ export default function SalesTableRow({ sale, role, onEdit, onDelete }) {
           {/* Delete Button */}
           <button
             onClick={() => onDelete(sale._id)}
-            className="flex items-center border border-gray-200  p-2 rounded hover:bg-red-600 transition"
+            className="flex items-center border border-gray-200  p-2 rounded hover:bg-red-500 transition"
             title="Delete Sale"
           >
             <Trash2 className="w-4 h-4" />
