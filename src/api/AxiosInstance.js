@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://pharma-sales-backend-v1.onrender.com/",
+  baseURL: import.meta.env.VITE_API_URL || "https://pharma-sales-backend-v1.onrender.com/api/v1",
 //   withCredentials: true,
 });
 
