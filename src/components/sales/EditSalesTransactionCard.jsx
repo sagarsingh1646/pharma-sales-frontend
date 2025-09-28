@@ -191,13 +191,13 @@ export default function EditSalesTransactionCard({ sale, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border text-gray-700 bg-white hover:bg-gray-50"
+            className="px-4 py-2 cursor-pointer rounded-lg border text-gray-700 bg-white hover:bg-gray-50"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800"
+            className="px-4 py-2 cursor-pointer rounded-lg bg-gray-900 text-white hover:bg-gray-800"
           >
             Update Transaction
           </button>
