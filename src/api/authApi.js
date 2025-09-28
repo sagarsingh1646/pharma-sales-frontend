@@ -1,4 +1,4 @@
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance from "./AxiosInstance";
 
 // Login user
 export const loginUser = async (loginData) => {
